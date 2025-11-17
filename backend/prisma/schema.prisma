@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Memory {
+  id                     String   @id @default(uuid())
+  userId                 String
+  rawText                String
+  title                  String
+  type                   String
+  dueDatetime            DateTime?
+  reminderDatetime       DateTime?
+  includeInNightlySummary Boolean @default(true)
+  status                 String   @default("open")
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+}
